@@ -6,12 +6,7 @@ import (
 	"testing"
 )
 
-type SortTestCase[T any] struct {
-	Input  []T
-	Output []T
-}
-
-func TestInsertionSort(t *testing.T) {
+func TestSelectionSort(t *testing.T) {
 	testCases := []SortTestCase[int]{
 		{
 			Input:  []int{2, 4, 3, 1, 5, 6},
@@ -27,7 +22,7 @@ func TestInsertionSort(t *testing.T) {
 		original := make([]int, len(testCase.Input))
 		copy(original, testCase.Input)
 
-		sort.InsertionSort(testCase.Input)
+		sort.SelectionSort(testCase.Input)
 
 		if !slices.Equal(testCase.Input, testCase.Output) {
 			t.Errorf(
