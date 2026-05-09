@@ -28,6 +28,7 @@ func merge(A []int, p, q, r int) {
 
 	rN := r - q
 	R := make([]int, rN)
+
 	for j := range rN {
 		R[j] = A[q+j+1]
 	}
