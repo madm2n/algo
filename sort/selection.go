@@ -1,6 +1,6 @@
 package sort
 
-// SlectionSort sort the array of integers using slection sort.
+// SelectionSort sorts the input slice in place using selection sort.
 func SelectionSort(inp []int) {
 	for i, cur := range inp {
 		smi := i
