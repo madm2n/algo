@@ -4,9 +4,15 @@ Simple Go implementations of classic algorithms and data structures.
 
 ## Contents
 
+### Sort
+
 - Insertion sort (`sort/InsertionSort`)
 - Merge sort (`sort/MergeSort`)
 - Selection sort (`sort/SelectionSort`)
+
+### Search
+
+- Binary search (`search/BinarySearch`)
 
 ## Usage
 
@@ -16,6 +22,7 @@ package main
 import (
     "fmt"
 
+    "algo/search"
     "algo/sort"
 )
 
@@ -24,6 +31,9 @@ func main() {
 
     sort.MergeSort(data)
     fmt.Println(data)
+
+    idx := search.BinarySearch(data, 5)
+    fmt.Println(idx)
 }
 ```
 
