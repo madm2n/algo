@@ -6,6 +6,7 @@ Simple Go implementations of classic algorithms and data structures.
 
 ### Sort
 
+- Bubble sort (`sort/BubbleSort`)
 - Insertion sort (`sort/InsertionSort`)
 - Merge sort (`sort/MergeSort`)
 - Selection sort (`sort/SelectionSort`)
