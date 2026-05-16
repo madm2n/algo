@@ -15,6 +15,10 @@ Simple Go implementations of classic algorithms and data structures.
 
 - Binary search (`search/BinarySearch`)
 
+### Exercises
+
+- HasIntSum (`exercises/HasIntSum`)
+
 ## Usage
 
 ```go
