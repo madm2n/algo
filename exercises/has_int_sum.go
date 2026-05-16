@@ -1,7 +1,7 @@
-// Package exercises provides small algorithm practice helpers.
 package exercises
 
-// HasIntSum reports whether any two distinct elements sum to the target value.
+// HasIntSum reports whether any two
+// distinct elements sum to the target value.
 func HasIntSum(inp []int, sum int) bool {
 	lkp := map[int]int{}
 
