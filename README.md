@@ -15,6 +15,10 @@ Simple Go implementations of classic algorithms and data structures.
 
 - Binary search ([`search/binary.go`](search/binary.go))
 
+### Recurrences
+
+- Naive matrix multiply ([`recurrences/matrix_multiply_naive.go`](recurrences/matrix_multiply_naive.go))
+
 ### Exercises
 
 - HasIntSum ([`exercises/has_int_sum.go`](exercises/has_int_sum.go))
