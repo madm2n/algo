@@ -6,18 +6,18 @@ Simple Go implementations of classic algorithms and data structures.
 
 ### Sort
 
-- Bubble sort (`sort/BubbleSort`)
-- Insertion sort (`sort/InsertionSort`)
-- Merge sort (`sort/MergeSort`)
-- Selection sort (`sort/SelectionSort`)
+- Bubble sort ([`sort/bubble.go`](sort/bubble.go))
+- Insertion sort ([`sort/insertion.go`](sort/insertion.go))
+- Merge sort ([`sort/merge.go`](sort/merge.go))
+- Selection sort ([`sort/selection.go`](sort/selection.go))
 
 ### Search
 
-- Binary search (`search/BinarySearch`)
+- Binary search ([`search/binary.go`](search/binary.go))
 
 ### Exercises
 
-- HasIntSum (`exercises/HasIntSum`)
+- HasIntSum ([`exercises/has_int_sum.go`](exercises/has_int_sum.go))
 
 ## Usage
 
