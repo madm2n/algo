@@ -20,6 +20,10 @@ Simple Go implementations of classic algorithms and data structures.
 | Merge sort     | O(n log n) | O(n log n) | O(n log n) | O(n)  |
 | Selection sort | O(n²)      | O(n²)      | O(n²)      | O(1)  |
 
+### Data Structures
+
+- Max-priority queue ([`ds/priority_queue.go`](ds/priority_queue.go))
+
 ### Search
 
 - Binary search ([`search/binary.go`](search/binary.go))
@@ -40,6 +44,7 @@ package main
 import (
     "fmt"
 
+    "algo/ds"
     "algo/search"
     "algo/sort"
 )
@@ -52,6 +57,13 @@ func main() {
 
     idx := search.BinarySearch(data, 5)
     fmt.Println(idx)
+
+    queue := ds.NewPriorityQueue[int]()
+    queue.Insert(5)
+    queue.Insert(2)
+    queue.Insert(9)
+    max, _ := queue.ExtractMax()
+    fmt.Println(max)
 }
 ```
 
