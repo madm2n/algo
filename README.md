@@ -26,17 +26,37 @@ Simple Go implementations of classic algorithms and data structures.
 
 - Max-priority queue ([`ds/priority_queue.go`](ds/priority_queue.go))
 
+| Operation  | Time     |
+| ---------- | -------- |
+| Maximum    | O(1)     |
+| ExtractMax | O(log n) |
+| Insert     | O(log n) |
+
 ### Search
 
 - Binary search ([`search/binary.go`](search/binary.go))
+- Quick select ([`search/quickselect.go`](search/quickselect.go))
+
+| Algorithm     | Best | Average  | Worst    | Space    |
+| ------------- | ---- | -------- | -------- | -------- |
+| Binary search | O(1) | O(log n) | O(log n) | O(log n) |
+| Quick select  | O(n) | O(n)     | O(n²)    | O(log n) |
 
 ### Recurrences
 
 - Naive matrix multiply ([`recurrences/matrix_multiply_naive.go`](recurrences/matrix_multiply_naive.go))
 
+| Algorithm             | Time  | Space |
+| --------------------- | ----- | ----- |
+| Naive matrix multiply | O(n³) | O(n²) |
+
 ### Exercises
 
 - HasIntSum ([`exercises/has_int_sum.go`](exercises/has_int_sum.go))
+
+| Function  | Time | Space |
+| --------- | ---- | ----- |
+| HasIntSum | O(n) | O(n)  |
 
 ## Usage
 
