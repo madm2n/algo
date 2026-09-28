@@ -25,12 +25,18 @@ Simple Go implementations of classic algorithms and data structures.
 ### Data Structures
 
 - Max-priority queue ([`ds/priority_queue.go`](ds/priority_queue.go))
+- Ring buffer ([`ds/ring_buffer.go`](ds/ring_buffer.go))
 
 | Operation  | Time     |
 | ---------- | -------- |
 | Maximum    | O(1)     |
 | ExtractMax | O(log n) |
 | Insert     | O(log n) |
+
+| Operation | Time |
+| --------- | ---- |
+| Read      | O(1) |
+| Write     | O(1) |
 
 ### Search
 
@@ -86,6 +92,12 @@ func main() {
     queue.Insert(9)
     max, _ := queue.ExtractMax()
     fmt.Println(max)
+
+    buffer := ds.NewRingBuffer[int](3)
+    buffer.Write(1)
+    buffer.Write(2)
+    value, _ := buffer.Read()
+    fmt.Println(value)
 }
 ```
 
