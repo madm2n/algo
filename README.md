@@ -25,13 +25,14 @@ Simple Go implementations of classic algorithms and data structures.
 ### Data Structures
 
 - Max-priority queue ([`ds/priority_queue.go`](ds/priority_queue.go))
-- Ring buffer ([`ds/ring_buffer.go`](ds/ring_buffer.go))
 
 | Operation  | Time     |
 | ---------- | -------- |
 | Maximum    | O(1)     |
 | ExtractMax | O(log n) |
 | Insert     | O(log n) |
+
+- Ring buffer ([`ds/ring_buffer.go`](ds/ring_buffer.go))
 
 | Operation | Time |
 | --------- | ---- |
