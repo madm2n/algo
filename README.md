@@ -25,13 +25,25 @@ Simple Go implementations of classic algorithms and data structures.
 ### Data Structures
 
 - Max-priority queue ([`ds/priority_queue.go`](ds/priority_queue.go))
-- Binary search tree ([`ds/binary_search_tree.go`](ds/binary_search_tree.go))
 
 | Operation  | Time     |
 | ---------- | -------- |
 | Maximum    | O(1)     |
 | ExtractMax | O(log n) |
 | Insert     | O(log n) |
+| IsEmpty    | O(1)     |
+| Size       | O(1)     |
+
+- Binary search tree ([`ds/binary_search_tree.go`](ds/binary_search_tree.go))
+
+| Operation | Average     | Worst |
+| --------- | ----------- | ----- |
+| Insert    | O(log n)    | O(n)  |
+| Search    | O(log n)    | O(n)  |
+| Delete    | Not implemented | Not implemented |
+| InOrder   | Not implemented | Not implemented |
+| IsEmpty   | O(1)        | O(1)  |
+| Size      | O(1)        | O(1)  |
 
 - Ring buffer ([`ds/ring_buffer.go`](ds/ring_buffer.go))
 
