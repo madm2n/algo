@@ -25,6 +25,7 @@ Simple Go implementations of classic algorithms and data structures.
 ### Data Structures
 
 - Max-priority queue ([`ds/priority_queue.go`](ds/priority_queue.go))
+- Binary search tree ([`ds/binary_search_tree.go`](ds/binary_search_tree.go))
 
 | Operation  | Time     |
 | ---------- | -------- |
