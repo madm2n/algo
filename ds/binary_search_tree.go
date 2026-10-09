@@ -84,9 +84,88 @@ func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) *bi
 	return nil
 }
 
+func (t *binarySearchTreeNode[T]) findNode(node, parent *binarySearchTreeNode[T], value T) (*binarySearchTreeNode[T], *binarySearchTreeNode[T]) {
+	if node == nil {
+		return nil, parent
+	}
+
+	if node.value == value {
+		return node, parent
+	}
+
+	if node.value <= value {
+		return t.findNode(node.right, node, value)
+	}
+
+	if node.value >= value {
+		return t.findNode(node.left, node, value)
+	}
+
+	return nil, nil
+}
+
 // Delete removes value from the tree if it is present.
 func (t *BinarySearchTree[T]) Delete(value T) {
-	panic("not implemented")
+	node, parent := t.root.findNode(t.root, nil, value)
+
+	if node == nil {
+		return
+	}
+
+	// Case 0: Deleting the leaf node.
+	if node.left == nil && node.right == nil {
+		if parent == nil {
+			t.root = nil
+		} else if parent.right == node {
+			parent.right = nil
+		} else if parent.left == node {
+			parent.left = nil
+		}
+
+		t.size -= 1
+		return
+	}
+
+	// Case 1: Deleating the node with a single child.
+	deleteOneChildRoot := func() {
+		if t.root.left != nil {
+			t.root = t.root.left
+		} else if t.root.right != nil {
+			t.root = t.root.right
+		}
+	}
+
+	if node.left == nil && node.right != nil {
+		if parent == nil {
+			deleteOneChildRoot()
+		} else if parent.right == node {
+			parent.right = node.right
+		} else if parent.left == node {
+			parent.left = node.right
+		}
+
+		t.size -= 1
+		return
+	}
+
+	if node.left != nil && node.right == nil {
+		if parent == nil {
+			deleteOneChildRoot()
+		} else if parent.right == node {
+			parent.right = node.left
+		} else if parent.left == node {
+			parent.left = node.left
+		}
+
+		t.size -= 1
+		return
+	}
+
+	// Case 2: Deleating a node with two children.
+	if node.left != nil && node.right != nil {
+		t.size -= 1
+		return
+	}
 }
 
 // InOrder returns the values in sorted order.
