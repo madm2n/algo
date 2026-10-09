@@ -61,16 +61,16 @@ func (t *BinarySearchTree[T]) insert(node *binarySearchTreeNode[T], value T) {
 
 // Search reports whether value is present in the tree.
 func (t *BinarySearchTree[T]) Search(value T) bool {
-	return t.search(t.root, value)
+	return t.search(t.root, value) != nil
 }
 
-func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) bool {
+func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) *binarySearchTreeNode[T] {
 	if node == nil {
-		return false
+		return nil
 	}
 
 	if node.value == value {
-		return true
+		return node
 	}
 
 	if node.value <= value {
@@ -81,7 +81,7 @@ func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) boo
 		return t.search(node.left, value)
 	}
 
-	return false
+	return nil
 }
 
 // Delete removes value from the tree if it is present.
