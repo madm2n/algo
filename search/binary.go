@@ -1,14 +1,16 @@
 package search
 
-// BinarySearch search a slice of integers using
+import "cmp"
+
+// BinarySearch search a slice using
 // binary search algorithm.
-func BinarySearch(inp []int, target int) int {
+func BinarySearch[T cmp.Ordered](inp []T, target T) int {
 	start := 0
 	end := len(inp)
 	return binarySearch(inp, target, start, end)
 }
 
-func binarySearch(inp []int, target int, start, end int) int {
+func binarySearch[T cmp.Ordered](inp []T, target T, start, end int) int {
 	if start >= end {
 		return -1
 	}

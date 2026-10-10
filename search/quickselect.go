@@ -1,14 +1,16 @@
 package search
 
+import "cmp"
+
 // QuickSelect returns the k-th smallest element of the input slice,
 // where k is zero-based. The input slice is modified in place.
-func QuickSelect(A []int, k int) int {
+func QuickSelect[T cmp.Ordered](A []T, k int) T {
 	p := 0
 	r := len(A) - 1
 	return quickSelect(A, p, r, k)
 }
 
-func quickSelect(A []int, p, r, k int) int {
+func quickSelect[T cmp.Ordered](A []T, p, r, k int) T {
 	if p == r {
 		return A[p]
 	}
@@ -26,7 +28,7 @@ func quickSelect(A []int, p, r, k int) int {
 	return quickSelect(A, q+1, r, k)
 }
 
-func partition(A []int, p, r int) int {
+func partition[T cmp.Ordered](A []T, p, r int) int {
 	x := A[r]
 	i := p - 1
 
