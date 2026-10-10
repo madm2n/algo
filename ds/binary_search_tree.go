@@ -67,23 +67,17 @@ func (t *BinarySearchTree[T]) Search(value T) bool {
 }
 
 func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) *binarySearchTreeNode[T] {
-	if node == nil {
-		return nil
+	curr := node
+
+	for curr != nil && value != curr.value {
+		if value < curr.value {
+			curr = curr.left
+		} else {
+			curr = curr.right
+		}
 	}
 
-	if node.value == value {
-		return node
-	}
-
-	if node.value <= value {
-		return t.search(node.right, value)
-	}
-
-	if node.value >= value {
-		return t.search(node.left, value)
-	}
-
-	return nil
+	return curr
 }
 
 // Delete removes value from the tree if it is present.
