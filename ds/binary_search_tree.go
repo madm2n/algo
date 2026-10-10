@@ -80,6 +80,14 @@ func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) *bi
 	return curr
 }
 
+func (t *BinarySearchTree[T]) successor(node *binarySearchTreeNode[T]) *binarySearchTreeNode[T] {
+	curr := node.right
+	for curr != nil && curr.left != nil {
+		curr = curr.left
+	}
+	return curr
+}
+
 // Delete removes value from the tree if it is present.
 func (t *BinarySearchTree[T]) Delete(value T) {
 	node := t.search(t.root, value)
@@ -144,6 +152,19 @@ func (t *BinarySearchTree[T]) Delete(value T) {
 
 	// Case 2: Deleating a node with two children.
 	if node.left != nil && node.right != nil {
+		succ := t.successor(node)
+		node.value = succ.value
+
+		if succ.parent.left == succ {
+			succ.parent.left = succ.right
+		} else {
+			succ.parent.right = succ.right
+		}
+
+		if succ.right != nil {
+			succ.right.parent = succ.parent
+		}
+
 		t.size -= 1
 		return
 	}
