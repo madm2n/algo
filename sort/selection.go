@@ -1,7 +1,9 @@
 package sort
 
+import "cmp"
+
 // SelectionSort sorts the input slice in place using selection sort.
-func SelectionSort(inp []int) {
+func SelectionSort[T cmp.Ordered](inp []T) {
 	for i, cur := range inp {
 		smi := i
 		smv := cur

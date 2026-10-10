@@ -1,13 +1,15 @@
 package sort
 
+import "cmp"
+
 // MergeSort sorts the input slice in place.
-func MergeSort(A []int) {
+func MergeSort[T cmp.Ordered](A []T) {
 	p := 0
 	r := len(A) - 1
 	mergeSort(A, p, r)
 }
 
-func mergeSort(A []int, p, r int) {
+func mergeSort[T cmp.Ordered](A []T, p, r int) {
 	if p >= r {
 		return
 	}
@@ -18,16 +20,16 @@ func mergeSort(A []int, p, r int) {
 	merge(A, p, q, r)
 }
 
-func merge(A []int, p, q, r int) {
+func merge[T cmp.Ordered](A []T, p, q, r int) {
 	lN := q - p + 1
-	L := make([]int, lN)
+	L := make([]T, lN)
 
 	for i := range lN {
 		L[i] = A[p+i]
 	}
 
 	rN := r - q
-	R := make([]int, rN)
+	R := make([]T, rN)
 
 	for j := range rN {
 		R[j] = A[q+j+1]

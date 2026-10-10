@@ -1,8 +1,10 @@
 package sort
 
+import "cmp"
+
 // HeapSort implementation of heap sort
-// for the slice of integers.
-func HeapSort(a []int) []int {
+// for the input slice.
+func HeapSort[T cmp.Ordered](a []T) []T {
 	size := len(a)
 	buildMaxHeap(a, size)
 
@@ -14,13 +16,13 @@ func HeapSort(a []int) []int {
 	return a
 }
 
-func buildMaxHeap(a []int, size int) {
+func buildMaxHeap[T cmp.Ordered](a []T, size int) {
 	for i := size/2 - 1; i >= 0; i-- {
 		maxHeapify(a, i, size)
 	}
 }
 
-func maxHeapify(a []int, i int, size int) {
+func maxHeapify[T cmp.Ordered](a []T, i int, size int) {
 	left := left(i)
 	right := right(i)
 	largest := i

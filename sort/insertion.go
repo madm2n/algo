@@ -1,7 +1,9 @@
 package sort
 
+import "cmp"
+
 // InsertionSort sorts the input slice in place.
-func InsertionSort(inp []int) {
+func InsertionSort[T cmp.Ordered](inp []T) {
 	for i := 1; i < len(inp); i++ {
 		cur := inp[i]
 		j := i - 1

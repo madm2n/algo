@@ -1,13 +1,15 @@
 package sort
 
+import "cmp"
+
 // QuickSort sorts the input slice in place.
-func QuickSort(A []int) {
+func QuickSort[T cmp.Ordered](A []T) {
 	p := 0
 	r := len(A) - 1
 	quickSort(A, p, r)
 }
 
-func quickSort(A []int, p, r int) {
+func quickSort[T cmp.Ordered](A []T, p, r int) {
 	if p >= r {
 		return
 	}
@@ -17,7 +19,7 @@ func quickSort(A []int, p, r int) {
 	quickSort(A, q+1, r)
 }
 
-func partition(A []int, p, r int) int {
+func partition[T cmp.Ordered](A []T, p, r int) int {
 	x := A[r]
 	i := p - 1
 

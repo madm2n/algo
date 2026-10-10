@@ -1,8 +1,10 @@
 package sort
 
+import "cmp"
+
 // BubbleSort sorts the input slice in place
 // using the bubble sort algorithm.
-func BubbleSort(inp []int) {
+func BubbleSort[T cmp.Ordered](inp []T) {
 	for i := 0; i < len(inp)-1; i++ {
 		swapped := false
 
