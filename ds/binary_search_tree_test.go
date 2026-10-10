@@ -7,8 +7,6 @@ import (
 )
 
 func TestBinarySearchTreeStartsEmpty(t *testing.T) {
-	t.Skip("implement BinarySearchTree before enabling")
-
 	tree := ds.NewBinarySearchTree[int]()
 	if !tree.IsEmpty() {
 		t.Error("new tree should be empty")
@@ -37,8 +35,6 @@ func TestBinarySearchTreeInsertAndSearch(t *testing.T) {
 }
 
 func TestBinarySearchTreeInOrder(t *testing.T) {
-	t.Skip("implement BinarySearchTree before enabling")
-
 	tree := ds.NewBinarySearchTree[int]()
 	for _, value := range []int{5, 3, 7, 2, 4, 6, 8} {
 		tree.Insert(value)
@@ -51,8 +47,6 @@ func TestBinarySearchTreeInOrder(t *testing.T) {
 }
 
 func TestBinarySearchTreeIgnoresDuplicates(t *testing.T) {
-	t.Skip("implement BinarySearchTree before enabling")
-
 	tree := ds.NewBinarySearchTree[int]()
 	for _, value := range []int{5, 3, 5, 3, 5} {
 		tree.Insert(value)
@@ -67,8 +61,6 @@ func TestBinarySearchTreeIgnoresDuplicates(t *testing.T) {
 }
 
 func TestBinarySearchTreeDelete(t *testing.T) {
-	t.Skip("implement BinarySearchTree before enabling")
-
 	testCases := []struct {
 		name  string
 		input []int

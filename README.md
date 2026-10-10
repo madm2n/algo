@@ -40,8 +40,8 @@ Simple Go implementations of classic algorithms and data structures.
 | --------- | ----------- | ----- |
 | Insert    | O(log n)    | O(n)  |
 | Search    | O(log n)    | O(n)  |
-| Delete    | Not implemented | Not implemented |
-| InOrder   | Not implemented | Not implemented |
+| Delete    | O(log n)    | O(n)  |
+| InOrder   | O(n)        | O(n)  |
 | IsEmpty   | O(1)        | O(1)  |
 | Size      | O(1)        | O(1)  |
 

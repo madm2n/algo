@@ -81,11 +81,19 @@ func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) *bi
 }
 
 func (t *BinarySearchTree[T]) successor(node *binarySearchTreeNode[T]) *binarySearchTreeNode[T] {
-	curr := node.right
-	for curr != nil && curr.left != nil {
-		curr = curr.left
+	if node.right != nil {
+		curr := node.right
+		for curr.left != nil {
+			curr = curr.left
+		}
+		return curr
 	}
-	return curr
+
+	curr := node
+	for curr.parent != nil && curr == curr.parent.right {
+		curr = curr.parent
+	}
+	return curr.parent
 }
 
 // Delete removes value from the tree if it is present.
@@ -172,7 +180,23 @@ func (t *BinarySearchTree[T]) Delete(value T) {
 
 // InOrder returns the values in sorted order.
 func (t *BinarySearchTree[T]) InOrder() []T {
-	panic("not implemented")
+	values := make([]T, 0, t.size)
+
+	if t.root == nil {
+		return values
+	}
+
+	curr := t.root
+	for curr.left != nil {
+		curr = curr.left
+	}
+
+	for curr != nil {
+		values = append(values, curr.value)
+		curr = t.successor(curr)
+	}
+
+	return values
 }
 
 // IsEmpty reports whether the tree contains no values.
