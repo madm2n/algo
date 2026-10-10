@@ -13,9 +13,10 @@ type BinarySearchTree[T cmp.Ordered] struct {
 }
 
 type binarySearchTreeNode[T cmp.Ordered] struct {
-	value T
-	left  *binarySearchTreeNode[T]
-	right *binarySearchTreeNode[T]
+	value  T
+	left   *binarySearchTreeNode[T]
+	right  *binarySearchTreeNode[T]
+	parent *binarySearchTreeNode[T]
 }
 
 // NewBinarySearchTree returns an empty binary search tree.
@@ -26,16 +27,17 @@ func NewBinarySearchTree[T cmp.Ordered]() *BinarySearchTree[T] {
 // Insert adds value to the tree.
 func (t *BinarySearchTree[T]) Insert(value T) {
 	if t.root == nil {
-		t.root = t.newNode(value)
+		t.root = t.newNode(nil, value)
 	} else {
 		t.insert(t.root, value)
 	}
 }
 
-func (t *BinarySearchTree[T]) newNode(value T) *binarySearchTreeNode[T] {
+func (t *BinarySearchTree[T]) newNode(parent *binarySearchTreeNode[T], value T) *binarySearchTreeNode[T] {
 	t.size += 1
 	return &binarySearchTreeNode[T]{
-		value: value,
+		parent: parent,
+		value:  value,
 	}
 }
 
@@ -46,13 +48,13 @@ func (t *BinarySearchTree[T]) insert(node *binarySearchTreeNode[T], value T) {
 
 	if node.value <= value {
 		if node.right == nil {
-			node.right = t.newNode(value)
+			node.right = t.newNode(node, value)
 		} else {
 			t.insert(node.right, value)
 		}
 	} else if node.value >= value {
 		if node.left == nil {
-			node.left = t.newNode(value)
+			node.left = t.newNode(node, value)
 		} else {
 			t.insert(node.left, value)
 		}
@@ -84,29 +86,9 @@ func (t *BinarySearchTree[T]) search(node *binarySearchTreeNode[T], value T) *bi
 	return nil
 }
 
-func (t *binarySearchTreeNode[T]) findNode(node, parent *binarySearchTreeNode[T], value T) (*binarySearchTreeNode[T], *binarySearchTreeNode[T]) {
-	if node == nil {
-		return nil, parent
-	}
-
-	if node.value == value {
-		return node, parent
-	}
-
-	if node.value <= value {
-		return t.findNode(node.right, node, value)
-	}
-
-	if node.value >= value {
-		return t.findNode(node.left, node, value)
-	}
-
-	return nil, nil
-}
-
 // Delete removes value from the tree if it is present.
 func (t *BinarySearchTree[T]) Delete(value T) {
-	node, parent := t.root.findNode(t.root, nil, value)
+	node := t.search(t.root, value)
 
 	if node == nil {
 		return
@@ -114,12 +96,12 @@ func (t *BinarySearchTree[T]) Delete(value T) {
 
 	// Case 0: Deleting the leaf node.
 	if node.left == nil && node.right == nil {
-		if parent == nil {
+		if node.parent == nil {
 			t.root = nil
-		} else if parent.right == node {
-			parent.right = nil
-		} else if parent.left == node {
-			parent.left = nil
+		} else if node.parent.right == node {
+			node.parent.right = nil
+		} else if node.parent.left == node {
+			node.parent.left = nil
 		}
 
 		t.size -= 1
@@ -133,15 +115,18 @@ func (t *BinarySearchTree[T]) Delete(value T) {
 		} else if t.root.right != nil {
 			t.root = t.root.right
 		}
+		t.root.parent = nil
 	}
 
 	if node.left == nil && node.right != nil {
-		if parent == nil {
+		if node.parent == nil {
 			deleteOneChildRoot()
-		} else if parent.right == node {
-			parent.right = node.right
-		} else if parent.left == node {
-			parent.left = node.right
+		} else if node.parent.right == node {
+			node.parent.right = node.right
+			node.right.parent = node.parent
+		} else if node.parent.left == node {
+			node.parent.left = node.right
+			node.right.parent = node.parent
 		}
 
 		t.size -= 1
@@ -149,12 +134,14 @@ func (t *BinarySearchTree[T]) Delete(value T) {
 	}
 
 	if node.left != nil && node.right == nil {
-		if parent == nil {
+		if node.parent == nil {
 			deleteOneChildRoot()
-		} else if parent.right == node {
-			parent.right = node.left
-		} else if parent.left == node {
-			parent.left = node.left
+		} else if node.parent.right == node {
+			node.parent.right = node.left
+			node.left.parent = node.parent
+		} else if node.parent.left == node {
+			node.parent.left = node.left
+			node.left.parent = node.parent
 		}
 
 		t.size -= 1
